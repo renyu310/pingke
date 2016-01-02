@@ -46,3 +46,7 @@ group :development do
 end
 
   gem 'execjs'
+
+  gem 'bootstrap-sass'
+
+  gem 'gravatar_image_tag'

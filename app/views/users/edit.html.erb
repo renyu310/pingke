@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3" >
+    <%= form_for @user, url: user_path(@user),method: :patch do |f| %>
+        <%= render "shared/error_messages" %>
+        <div>
+          <%= gravatar_for(@user) %>
+          <div>用户名:  <%= @user.name %><br></div>
+          <div>邮件地址:  <%= @user.email %><br></div>
+        </div>
+        <br>
+
+        <%= f.label :年龄%>
+        <%= f.text_field :age, class:"form-control" %>
+        <%= f.label :性别%>
+        <%= f.text_field :gender, class:"form-control" %>
+        <%= f.label :电话%>
+        <%= f.text_field :phone, class:"form-control" %>
+        <%= f.label :Q_Q %>
+        <%= f.text_field :qq, class:"form-control" %>
+        <%= f.label :学院%>
+        <%= f.text_field :department, class:"form-control" %>
+        <%= f.label :专业%>
+        <%= f.text_field :major, class:"form-control" %>
+        <%= f.label :签名%>
+        <%= f.text_field :tag, class:"form-control" %>
+        <%= f.label :个人简介%>
+        <%= f.text_area :introduction, class:"form-control" %>
+
+
+        <%= f.submit "保存更改", class: "btn btn-primary" %>
+    <%end%>
+  </div>
+</div>
