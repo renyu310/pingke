@@ -11,6 +11,7 @@
 <br>
 
 <%= link_to "新增课程", new_course_path %>
+
 <ul id="courses">
   <% if @courses %>
       <%= render @courses %>
@@ -18,4 +19,3 @@
       <h5>没有相关课程！</h5>
   <% end %>
 </ul>
-

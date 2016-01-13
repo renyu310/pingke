@@ -76,7 +76,6 @@ def filter_courses
 
   @courses = Course.where(department: df).where(course_type: tf)
 
-
   if @courses
     respond_to do |format|
       format.js

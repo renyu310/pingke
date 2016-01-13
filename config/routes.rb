@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :courses
 
@@ -27,6 +31,17 @@ Rails.application.routes.draw do
 
   get 'filters' => "courses#filter_courses"
   post 'filters' => 'courses#filter_courses'
+
+  resources :microposts, only: [:create, :destroy]
+
+  resources :relationships, only: [:create, :destroy]
+
+
+  resources :users do
+    collection do
+      get :tigers
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

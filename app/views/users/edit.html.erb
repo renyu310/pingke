@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3" >
     <%= form_for @user, url: user_path(@user),method: :patch do |f| %>
-        <%= render "shared/error_messages" %>
+        <%= render "shared/error_messages",object:f.object %>
         <div>
           <%= gravatar_for(@user) %>
           <div>用户名:  <%= @user.name %><br></div>

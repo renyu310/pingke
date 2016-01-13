@@ -2,7 +2,7 @@
 <br>
 <h1>
   <%= @course.name %>
-  <% if current_user.name == "admin" %>
+  <% if current_user.admin? %>
       <small>
         <%= link_to "编辑", edit_course_path(@course) %>
       </small>

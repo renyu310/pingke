@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+  def feed
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+  end
+
   def avatar(with=80)
     gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{with}&d=retro"

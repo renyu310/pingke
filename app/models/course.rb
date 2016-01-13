@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
       departcollect[i] = course.department
       i+=1
     end
-    return departcollect.sort
+    return departcollect.compact.sort
   end
 
   def Course.typeCollection
@@ -20,7 +20,8 @@ class Course < ActiveRecord::Base
       typecollect[i] = course.course_type
       i+=1
     end
-    return typecollect.sort
+
+    return typecollect.compact.sort
   end
 
 end
