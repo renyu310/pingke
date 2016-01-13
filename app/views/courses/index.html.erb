@@ -1,0 +1,21 @@
+<h1>课程列表</h1>
+
+<%= form_tag('search',remote:true) do %>
+    <%= text_field_tag :keywd %>
+    <%= submit_tag "搜索"%>
+<% end %>
+
+<br>
+    <%= render 'filter_courses'%>
+<br>
+<br>
+
+<%= link_to "新增课程", new_course_path %>
+<ul id="courses">
+  <% if @courses %>
+      <%= render @courses %>
+  <% else %>
+      <h5>没有相关课程！</h5>
+  <% end %>
+</ul>
+

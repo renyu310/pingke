@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   #-------------------------表关系处理-------------------------------------#
   has_and_belongs_to_many :courses  #与课程关系
+
   has_many :comments, dependent: :destroy
 
   #关注功能
@@ -42,5 +43,9 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+  def avatar(with=80)
+    gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{with}&d=retro"
+  end
 
 end

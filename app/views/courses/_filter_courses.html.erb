@@ -1,0 +1,21 @@
+<%i=0%>
+<%= form_tag('filters', remote: true) do %>
+    <div id="department_filter">
+      <h5>所属学院：</h5>
+      <% @all_depart.each do |dep| %>
+          <%i+=1%>
+          <%= check_box_tag 'dfilters[]', i%>
+          <%= label_tag dep.to_s %>
+      <% end %>
+    </div>
+    <div id="type">
+      <h5>课程类型:</h5>
+      <%i=0%>
+      <% @all_type.each do |ctype| %>
+          <%i+=1%>
+          <%= check_box_tag 'tfilters[]', i%>
+          <%= label_tag ctype.to_s %>
+      <% end %>
+    </div>
+    <%= submit_tag("提交") %>
+<% end %>

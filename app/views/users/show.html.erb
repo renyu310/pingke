@@ -1,6 +1,17 @@
 <br>
+<br>
+<br>
+<br>
 
-<%= gravatar_for(@user)%>
+<%= gravatar_for(@user,60)%>
 <%= @user.name%>
-
+<%if @user == current_user%>
 <%= link_to '编辑资料', edit_user_path %>
+<%end%>
+<%%>
+
+
+<br>
+<br>
+<br>
+<br>

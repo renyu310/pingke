@@ -22,4 +22,16 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def course_followed?(course)
+    return current_user.course_ids.include?(course.id)
+  end
+
+  def follow_course(course)
+    current_user.course_ids = course.id
+  end
+
+  def unfollow_course(course)
+    current_user.course_ids
+  end
+
 end

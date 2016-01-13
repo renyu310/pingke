@@ -1,0 +1,9 @@
+<li>
+  <%= link_to(course.name, course_path(course)) %>
+
+  <% if current_user && current_user.name == "admin" %>
+      <%= link_to("删除", course_path(course), method: :delete, data: {confirm: true, remote: true}) %>
+      <%= link_to("更新", edit_course_path(course)) %>
+  <% end %>
+
+</li>

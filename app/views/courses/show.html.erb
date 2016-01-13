@@ -1,0 +1,66 @@
+<br>
+<br>
+<h1>
+  <%= @course.name %>
+  <% if current_user.name == "admin" %>
+      <small>
+        <%= link_to "编辑", edit_course_path(@course) %>
+      </small>
+  <% end %>
+  <% if current_user %>
+      <% if course_followed?(@course) %>
+          <small>
+            <%= link_to "取消关注", edit_course_path(@course) %>
+          </small>
+      <% else %>
+          <small>
+            <%= link_to "关注", edit_course_path(@course) %>
+          </small>
+      <% end %>
+  <% end %>
+</h1>
+<p>
+<h4>课程基本信息</h4>
+<%= '任课教师：'+@course.teacher %>
+<%= '课程类型：'+@course.course_type %>
+<%= '学分：'+@course.credit %>
+<%= '开课学院：'+@course.department %>
+<%= '上课教师：'+@course.classroom %>
+</p>
+<p>
+<h4>课程简介</h4>
+<%= @course.introduction %>
+</p>
+<p>
+<h4>课程备注</h4>
+<%= @course.remarks %>
+</p>
+
+<div id="comments">
+  <% if @comments %>
+      <% @comments.each do |c| %>
+          <%= render partial: 'shared/comment_list', locals: {c: c} %>
+      <% end %>
+  <% else %>
+      <h5>没有评论!</h5>
+  <% end %>
+</div>
+
+<br>
+<br>
+<div id="comm_box">
+  <% if current_user %>
+      <%= render partial: 'shared/comment_box', locals: {course: @course} %>
+  <% else %>
+      <%= link_to "先登录，后评论", login_path %>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
