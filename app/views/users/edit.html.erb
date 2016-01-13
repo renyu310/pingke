@@ -1,33 +1,65 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3" >
-    <%= form_for @user, url: user_path(@user),method: :patch do |f| %>
-        <%= render "shared/error_messages",object:f.object %>
-        <div>
-          <%= gravatar_for(@user) %>
-          <div>用户名:  <%= @user.name %><br></div>
-          <div>邮件地址:  <%= @user.email %><br></div>
+  <ul><%= gravatar_for(@user,60) %></ul>
+  <ul><%= @user.name %></ul>
+
+  <div class="col-md-6 col-md-offset-2">
+    <%= form_for @user, url: user_path(@user), method: :patch do |f| %>
+        <%= render "shared/error_messages", object: f.object %>
+
+        <div class="form-group">
+          <%= f.label :年龄, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :age, class: "form-control" %>
+          </div>
         </div>
-        <br>
 
-        <%= f.label :年龄%>
-        <%= f.text_field :age, class:"form-control" %>
-        <%= f.label :性别%>
-        <%= f.text_field :gender, class:"form-control" %>
-        <%= f.label :电话%>
-        <%= f.text_field :phone, class:"form-control" %>
-        <%= f.label :Q_Q %>
-        <%= f.text_field :qq, class:"form-control" %>
-        <%= f.label :学院%>
-        <%= f.text_field :department, class:"form-control" %>
-        <%= f.label :专业%>
-        <%= f.text_field :major, class:"form-control" %>
-        <%= f.label :签名%>
-        <%= f.text_field :tag, class:"form-control" %>
-        <%= f.label :个人简介%>
-        <%= f.text_area :introduction, class:"form-control" %>
-
-
-        <%= f.submit "保存更改", class: "btn btn-primary" %>
-    <%end%>
-  </div>
-</div>
+        <div class="form-group">
+          <%= f.label :性别, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :gender, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :电话, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :phone, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :Q_Q, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :qq, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :学院, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :department, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :专业, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :major, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :签名, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :tag, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :个人简介, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+          <%= f.text_area :introduction, class:"form-control", rows:"3" %>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit "保存更改", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+    </div>
+    </div>
+    </div>

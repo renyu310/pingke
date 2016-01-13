@@ -1,15 +1,18 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-4 user_info",>
+    <div>
     <section>
       <h1>
-        <%= gravatar_for(@user,60) %>
-        <%= @user.name %>
+        <li><%= gravatar_for(@user,60) %></li>
+        <li><%= @user.name %></li>
+        <samll><%= link_to '编辑',edit_user_path(@user)%></samll>
       </h1>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    </div>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

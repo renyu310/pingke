@@ -2,12 +2,12 @@
 <br>
 <h1>
   <%= @course.name %>
-  <% if current_user.admin? %>
-      <small>
-        <%= link_to "编辑", edit_course_path(@course) %>
-      </small>
-  <% end %>
   <% if current_user %>
+      <% if current_user.admin? %>
+          <small>
+            <%= link_to "编辑", edit_course_path(@course) %>
+          </small>
+      <% end %>
       <% if course_followed?(@course) %>
           <small>
             <%= link_to "取消关注", edit_course_path(@course) %>

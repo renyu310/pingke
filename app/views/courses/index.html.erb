@@ -1,21 +1,26 @@
-<h1>课程列表</h1>
+<h1>课程列表<small><%if current_user.admin?%><%= link_to "新增课程", new_course_path %></small><%end%></h1>
 
-<%= form_tag('search',remote:true) do %>
-    <%= text_field_tag :keywd %>
-    <%= submit_tag "搜索"%>
-<% end %>
+<div class="row">
+  <aside class="col-md-5 col-md-offset-1">
+    <div>
+      <section>
+        <%= form_tag('search', remote: true) do %>
+            <div class="form-group">
+              <div class="input-group">
+                <%= text_field_tag :keywd %>
+                <%= submit_tag "搜索", class: "btn btn-default" %>
+            </div>
+            </div>
+        <% end %>
+      </section>
+        <%= render partial: 'filter_courses' %>
+    </div>
+  </aside>
 
-<br>
-    <%= render 'filter_courses'%>
-<br>
-<br>
+  <div class="col-md-6">
 
-<%= link_to "新增课程", new_course_path %>
-
-<ul id="courses">
-  <% if @courses %>
-      <%= render @courses %>
-  <% else %>
-      <h5>没有相关课程！</h5>
-  <% end %>
-</ul>
+    <ul id="courses">
+        <%= render partial: "search_result", locals:{courses:@courses} %>
+    </ul>
+  </div>
+</div>

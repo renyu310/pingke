@@ -4,8 +4,10 @@
       <h5>所属学院：</h5>
       <% @all_depart.each do |dep| %>
           <%i+=1%>
+          <div class="checkbox ">
           <%= check_box_tag 'dfilters[]', i%>
           <%= label_tag dep.to_s %>
+          </div>
       <% end %>
     </div>
     <div id="type">
@@ -13,8 +15,10 @@
       <%i=0%>
       <% @all_type.each do |ctype| %>
           <%i+=1%>
+          <div class="checkbox ">
           <%= check_box_tag 'tfilters[]', i%>
           <%= label_tag ctype.to_s %>
+          </div>
       <% end %>
     </div>
     <%= submit_tag("提交") %>

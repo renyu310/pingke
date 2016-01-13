@@ -1,18 +1,32 @@
-<% provide(:title,'log in') %>
+<% provide(:title, 'log in') %>
 
 <h1>登陆</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-4">
-    <%= form_for(:session,url:login_path) do |f| %>
-        <%= f.label '电子邮件' %>
-        <%= f.text_field :email %>
-        <br>
-        <%= f.label '密码' %>
-        <%= f.password_field :password %>
-
-        <%= f.submit '登陆',class: 'btn btn-primary' %>
-    <% end%>
-    <p>还没有账户<%= link_to '现在注册', sign_up_path %> </p>
+    <%= form_for(:session, url: login_path, class: "form-horizontal") do |f| %>
+        <div class="form-group">
+          <%= f.label '电子邮件', class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label '密码', class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit '登陆', class: 'btn btn-primary btn-default' %>
+          </div>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <p>还没有账户<%= link_to '现在注册', sign_up_path %> </p>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.all
+    @courses = Course.paginate(page: params[:page],per_page:20)
     @all_depart = Course.departCollection
     #@all_type = ["专业核心课", "专业普及课", "专业研讨课", "公共必修课", "公共选修课"].sort
     @all_type = Course.typeCollection
