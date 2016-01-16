@@ -16,21 +16,29 @@ Rails.application.routes.draw do
 
 
 
+
   resources :users do
     member do
       get :following, :followers
     end
   end
 
+
   resources :courses
 
-  resources :comments, only: [:create]
+  resources :comments, only: [:create,:destroy]
+
 
   get 'search' => "courses#search"
   post 'search' => 'courses#search'
 
   get 'filters' => "courses#filter_courses"
   post 'filters' => 'courses#filter_courses'
+
+  post 'follow_course' => 'courses#followcourse'
+  post 'unfollow_course' => 'courses#unfollowcourse'
+
+  post 'put_zan_course' => 'courses#putZan'
 
   resources :microposts, only: [:create, :destroy]
 

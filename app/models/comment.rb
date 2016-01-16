@@ -4,5 +4,5 @@ class Comment < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :course_id, presence: true
-  validates :content, presence: true, length: {minimum:10}
+  validates :content, presence: true, length: {minimum:1}
 end

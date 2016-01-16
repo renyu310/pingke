@@ -1,17 +1,32 @@
 <div class="reply clearfix">
   <div class="avatar">
-    <%= link_to c.user do %>
-        <%= image_tag c.user.avatar(40), class: 'image-circle' %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1">
+          <div class="row">
+            <%= link_to c.user do %>
+                <%= gravatar_for(c.user,50)%>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="username">
+              <%= link_to c.user.name, c.user %>
+            </div>
 
-    <% end %>
-  </div>
-  <div class="body">
-    <div class="heading">
-      <h5 class="name"><%= link_to c.user.name, c.user %></h5>
-        <span class="datetime">
+          </div>
+        </div>
+
+        <div class="col-md-11">
+          <div class="row">
+            <%= c.content %>
+          </div>
+          <div class="row">
+            <span class="datetime">
           <%= time_ago_in_words c.created_at %>前
         </span>
+          </div>
+        </div>
+      </div>
     </div>
-    <%= c.content %>
   </div>
 </div>

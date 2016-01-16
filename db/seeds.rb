@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-=begin
+
 User.create!(name: "Example User",
              email: "example@test.org",
              password:
@@ -22,10 +22,10 @@ User.create!(name: "Example User",
                    password,
                password_confirmation: password)
 end
-=end
 
 
-=begin
+
+
 Course.create!(name: "Example Course",
              teacher: "teacher",
               introduction: "this is a introduction")
@@ -38,9 +38,9 @@ Course.create!(name: "Example Course",
                introduction: introduction
                )
 end
-=end
 
-=begin
+
+
 #micropost
 users = User.order(:created_at).take(6)
 50.times do
@@ -55,4 +55,4 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
-=end
+

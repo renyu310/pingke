@@ -1,27 +1,84 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4 user_info",>
-    <div>
-    <section>
-      <h1>
-        <li><%= gravatar_for(@user,60) %></li>
-        <li><%= @user.name %></li>
-        <samll><%= link_to '编辑',edit_user_path(@user)%></samll>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    </div>
+  <aside class="col-md-4 user_info" ,>
+    <%= render "left_layout" %>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-        <h3>状态 (<%= @user.microposts.count %>)</h3>
-        <ol class="microposts">
-          <%= render @microposts %>
-        </ol>
-        <%= will_paginate @microposts %>
-    <% end %>
+
+
+    <section>
+
+      <ul id="tabs">
+        <li><a href="#" name="#tab1">个人信息</a></li>
+        <li><a href="#" name="#tab2">课程信息</a></li>
+        <li><a href="#" name="#tab3">评论信息</a></li>
+        <li><a href="#" name="#tab4">状态</a></li>
+      </ul>
+
+      <div id="content">
+        <div id="tab1">
+            <%= render partial: "detial_info",locals: {user:@user} %>
+        </div>
+
+        <div id="tab2">
+            <%= render partial: 'my_courses',locals: {courses: @courses} %>
+        </div>
+
+        <div id="tab3"><%= render 'my_comments' %></div>
+        <div id="tab4">
+
+          <% if @user.microposts.any? %>
+              <h3>状态 (<%= @user.microposts.count %>)</h3>
+              <ol class="microposts">
+                <%= render @microposts %>
+              </ol>
+              <%= will_paginate @microposts %>
+          <% end %>
+        </div>
+      </div>
+
+
+    </section>
+
+
   </div>
+
+
 </div>
+
+<script>
+    function resetTabs(){
+        $("#content > div").hide(); //Hide all content
+        $("#tabs a").attr("id",""); //Reset id's
+    }
+
+    var myUrl = window.location.href; //get URL
+    var myUrlTab = myUrl.substring(myUrl.indexOf("#")); // For mywebsite.com/tabs.html#tab2, myUrlTab = #tab2
+    var myUrlTabName = myUrlTab.substring(0,4); // For the above example, myUrlTabName = #tab
+
+    (function(){
+        $("#content > div").hide(); // Initially hide all content
+        $("#tabs li:first a").attr("id","current"); // Activate first tab
+        $("#content > div:first").fadeIn(); // Show first tab content
+
+        $("#tabs a").on("click",function(e) {
+            e.preventDefault();
+            if ($(this).attr("id") == "current"){ //detection for current tab
+                return
+            }
+            else{
+                resetTabs();
+                $(this).attr("id","current"); // Activate this
+                $($(this).attr('name')).fadeIn(); // Show content for current tab
+            }
+        });
+
+        for (i = 1; i <= $("#tabs li").length; i++) {
+            if (myUrlTab == myUrlTabName + i) {
+                resetTabs();
+                $("a[name='"+myUrlTab+"']").attr("id","current"); // Activate url tab
+                $(myUrlTab).fadeIn(); // Show url tab content
+            }
+        }
+    })()
+</script>

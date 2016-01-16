@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   #-------------------------表关系处理-------------------------------------#
   has_and_belongs_to_many :courses  #与课程关系
 
+
   has_many :comments, dependent: :destroy
 
   #关注功能
@@ -42,6 +43,20 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  #关注课程
+  def follow_course(course)
+    self.courses << course
+  end
+
+  def unfollow_course(course)
+    self.courses.destroy(course)
+  end
+
+  def following?(course)
+    self.courses.include?(course)
+  end
+
 
   def feed
     following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"

@@ -1,0 +1,4 @@
+<%= form_tag(put_zan_course_path,remote: true) do %>
+    <div><%= hidden_field_tag :course_id, @course.id %></div>
+    <%= submit_tag '点赞', class: "btn btn-primary" %>
+<% end %>

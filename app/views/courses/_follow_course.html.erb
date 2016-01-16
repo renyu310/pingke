@@ -1,0 +1,5 @@
+<%= form_tag(follow_course_path,remote: true) do %>
+    <div><%= hidden_field_tag :user_id, current_user.id %></div>
+    <div><%= hidden_field_tag :course_id, @course.id %></div>
+    <%= submit_tag "关注课程", class: "btn btn-primary" %>
+<% end %>

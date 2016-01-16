@@ -1,0 +1,5 @@
+<% if course_followed?(@course) %>
+    <%= render partial: "unfollow_course" %>
+<% else %>
+    <%= render partial: "follow_course" %>
+<% end %>

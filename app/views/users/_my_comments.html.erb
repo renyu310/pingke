@@ -1,0 +1,9 @@
+<div id="comments">
+  <% if @comments %>
+      <% @comments.each do |c| %>
+          <%= render partial: 'shared/comment_list', locals: {c: c} %>
+      <% end %>
+  <% else %>
+      <h5>没有评论!</h5>
+  <% end %>
+</div>

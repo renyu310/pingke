@@ -1,7 +1,11 @@
 @import "bootstrap";
 @import "bootstrap-sprockets";
 
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
 
 body{
   background: url(http://www.bjdijiao.com/uploads/allimg/121126/2-121126134431610.jpg);
@@ -239,9 +243,16 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input, select, .uneditable-input {
   border: 1px solid #bbb;
   width: auto;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+textarea {
+  border: 1px solid #bbb;
+  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -267,4 +278,77 @@ input {
 
 .navbar{
   background-color: darkblue;
+}
+
+
+
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: #c0865e;
+  &:hover {
+    color: #845534;
+  }
+}
+
+
+form {
+  .error {
+    margin: 5px 0 9px 0;
+    color: #DB8A14;
+  }
+  * {
+    &:focus {
+      outline: none;
+    }
+  }
+  input {
+    height: auto;
+    width: auto;
+    padding: 10px 12px;
+    color: #555;
+  }
+  textarea {
+    height: 100px;
+    width: 90%;
+    padding: 10px 10px;
+    color: #555;
+  }
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  dd {
+    margin: 0;
+  }
+}
+
+.datetime {
+  color: darkorchid;
+}
+.username {
+  text-align: center;
 }

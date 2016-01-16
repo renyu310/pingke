@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.paginate(page: params[:page],per_page:20)
+    @courses = Course.paginate(page: params[:page],per_page:10)
     @all_depart = Course.departCollection
     #@all_type = ["专业核心课", "专业普及课", "专业研讨课", "公共必修课", "公共选修课"].sort
     @all_type = Course.typeCollection
@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    @comments = @course.comments
+    @comments = @course.comments.paginate(page: params[:page],per_page:5)
   end
 
   def new
@@ -32,6 +32,7 @@ class CoursesController < ApplicationController
         format.html
         format.js
       else
+        render 'index'
         format.html { render action: "index" }
       end
     end
@@ -58,7 +59,8 @@ def search
 
   respond_to do |format|
     if keywd
-      @courses = Course.where("name LIKE ?", ['%', keywd, '%'].join)
+      @courses_all = Course.where("name LIKE ?", ['%', keywd, '%'].join)
+      @courses = @courses_all.paginate(page: params[:page],per_page:5)
       format.js
     end
   end
@@ -74,15 +76,50 @@ def filter_courses
   df = get_filter_params(all_depart, dfilters)
   tf = get_filter_params(all_type, tfilters)
 
-  @courses = Course.where(department: df).where(course_type: tf)
+  if df
+    if tf
+      @courses = Course.where(department: df).where(course_type: tf)
+    else
+      @courses = Course.where(department: df)
+    end
+  else
+    @courses = Course.where(course_type: tf)
+  end
 
   if @courses
     respond_to do |format|
       format.js
     end
   end
-
 end
+
+  def followcourse
+    @user = User.find(params[:user_id])
+    @course = Course.find(params[:course_id])
+    @user.follow_course(@course)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def unfollowcourse
+    @user = User.find(params[:user_id])
+    @course = Course.find(params[:course_id])
+    @user.unfollow_course(@course)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def putZan
+    @course = Course.find(params[:course_id])
+    @course.zan = @course.zan.to_i + 1
+    @course.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
 
 private
