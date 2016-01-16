@@ -47,11 +47,6 @@ ActiveRecord::Schema.define(version: 20160113122901) do
     t.integer "course_id"
   end
 
-  create_table "courses_users_tables", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
-  end
-
   create_table "microposts", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"
