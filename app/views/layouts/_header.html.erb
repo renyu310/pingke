@@ -14,20 +14,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><%= link_to "课程", courses_path ,class:"navbar-brand" %></li>
-        <li><%= link_to "校友", users_path ,class:"navbar-brand" %></li>
-        <li><%= link_to "关于", about_path ,class:"navbar-brand" %></li>
-        <li><%= link_to "帮助", help_path  ,class:"navbar-brand" %></li>
+        <li><%= link_to "课程", courses_path %></li>
+        <li><%= link_to "校友", users_path %></li>
+        <li><%= link_to "关于", about_path %></li>
+        <li><%= link_to "帮助", help_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li><%= gravatar_for(current_user,50) %></li>
             <li><%= link_to current_user.name,current_user %></li>
-            <li><%= link_to "退出", logout_path, class:"navbar-brand" ,method: "delete" %></li>
+            <li><%= link_to "退出", logout_path, method: "delete" %></li>
           <% else%>
-              <li><%= link_to "登陆", login_path ,class:"navbar-brand" %></li>
-              <li><%= link_to "注册", sign_up_path, class:"navbar-brand" %></li>
+              <li><%= link_to "登陆", login_path %></li>
+              <li><%= link_to "注册", sign_up_path %></li>
           <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
